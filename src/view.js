@@ -1,0 +1,36 @@
+export default class View {
+    #csvFile = document.querySelector('#csv-file');
+    #fileSize = document.querySelector('#file-size');
+    #form = document.querySelector('#form');
+    #debug = document.querySelector('#debug');
+    #progress = document.querySelector('#progress');
+
+
+    setFileSize(size) {
+        this.#fileSize.innerHTML = `File size: ${size}\n`
+    };
+
+    configureOnFileChange(fn) {
+        this.#csvFile.addEventListener('change', e => {
+            fn(e.target.files[0]);
+        })
+    };
+
+    configureOnFormSubmit(fn) {
+        this.#form.reset();
+        this.#form.addEventListener('submit', e => {
+            e.preventDefault();
+            const file = this.#csvFile.files[0];
+            if (!file) {
+                alert('Please select a file!')
+                return
+            };
+        })
+    };
+
+    updateDebugLog(text, reset = true) {
+        if (reset) {
+
+        }
+    }
+};

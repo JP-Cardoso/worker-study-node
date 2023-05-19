@@ -1,0 +1,19 @@
+Use o node mais recente
+
+JS Isomorfo
+
+-----------------------------
+Usando web workes - Node.js
+
+- SRC/
+    - View:
+        Vai ser tudo o que for de tela, o unino arquivo
+        que vai mexer no navegador
+    - Service:
+        Regra de negocio
+    - Worker:
+        É o que vai executar em segundo plano, tudo o que pode 
+        travar o navegador ou a CPU vai usar o Worker
+    - Controller:
+        Vai direcionar o fluxo
+    - Index
