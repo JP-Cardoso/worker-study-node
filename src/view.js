@@ -4,6 +4,7 @@ export default class View {
     #form = document.querySelector('#form');
     #debug = document.querySelector('#debug');
     #progress = document.querySelector('#progress');
+    #worker = document.querySelector('#worker');
 
 
     setFileSize(size) {
@@ -20,17 +21,34 @@ export default class View {
         this.#form.reset();
         this.#form.addEventListener('submit', e => {
             e.preventDefault();
+            console.log('e', e);
             const file = this.#csvFile.files[0];
             if (!file) {
                 alert('Please select a file!')
                 return
             };
+
+            this.updateDebugLog("")
+            const form = new FormData(e.currentTarget);
+            const description = form.get('description');
+            fn({description, file})
         })
     };
 
     updateDebugLog(text, reset = true) {
         if (reset) {
-
+            this.#debug.innerHTML = text;
+            return;
         }
+
+        this.#debug.innerHTML += text;
+    }
+
+    updateProgress(value) {
+        this.#progress.value = value;
+    }
+
+    isWorkerEnabled() {
+        return this.#worker.checked;
     }
 };
